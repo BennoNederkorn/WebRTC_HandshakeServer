@@ -1,0 +1,16 @@
+{
+  "name": "webrtc_handshakeserver",
+  "version": "1.0.0",
+  "description": "This is the Handshake server for connecting the controller (HMI) with the BB-8 head (ESP32S3) via WebRTC",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "Benno Nederkorn",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "ws": "^8.0.0"
+  }
+}
