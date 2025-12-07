@@ -65,16 +65,16 @@ app.post('/join/:roomId', (req, res) => {
 });
 
 // endpoint for ICE server requests
-app.post('/ice', (_req, res) => {
+app.post('/ice', (req, res) => {
     console.log('ICE server request received');
-    res.json({
+    const iceResponse = {
         iceServers: [
             {
                 urls: 'stun:stun.l.google.com:19302',
             },
             // You can add more STUN/TURN servers here if needed
         ],
-    });
+    };
     const iceResponseString = JSON.stringify(iceResponse);
     res.setHeader('Content-Type', 'application/json');
     res.setHeader('Content-Length', Buffer.byteLength(iceResponseString)); // Explicitly set Content-Length
