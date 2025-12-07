@@ -57,7 +57,10 @@ app.post('/join/:roomId', (req, res) => {
     }
     rooms[roomId].pendingClients[clientId] = { id: clientId };
 
-    res.json(response);
+    // Manually stringify and set headers to avoid chunked encoding, which the ESP client may not handle.
+    const responseString = JSON.stringify(response);
+    res.setHeader('Content-Type', 'application/json');
+    res.send(responseString);
 });
 
 // endpoint for ICE server requests
