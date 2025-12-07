@@ -63,7 +63,7 @@ app.post('/join/:roomId', (req, res) => {
     res.setHeader('Content-Length', Buffer.byteLength(responseString)); // Explicitly set Content-Length
     console.log(`send responseString: ${responseString}`);
     console.log(`Content-Length: ${Buffer.byteLength(responseString)}`);
-    res.send(responseString); 
+    res.end(responseString); // use res.end() instead of res.send() to ensure that the response is sent without chunking 
 });
 
 // endpoint for ICE server requests
@@ -80,9 +80,9 @@ app.post('/ice', (req, res) => {
     const iceResponseString = JSON.stringify(iceResponse);
     res.setHeader('Content-Type', 'application/json');
     res.setHeader('Content-Length', Buffer.byteLength(iceResponseString)); // Explicitly set Content-Length
-    console.log(`send responseString: ${responseString}`);
-    console.log(`Content-Length: ${Buffer.byteLength(responseString)}`);
-    res.send(iceResponseString);
+    console.log(`send responseString: ${iceResponseString}`);
+    console.log(`Content-Length: ${Buffer.byteLength(iceResponseString)}`);
+    res.end(iceResponseString); // use res.end() instead of res.send() to ensure that the response is sent without chunking 
 });
 
 // --- WebSocket Server Setup ---
