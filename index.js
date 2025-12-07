@@ -60,7 +60,8 @@ app.post('/join/:roomId', (req, res) => {
     // Manually stringify and set headers to avoid chunked encoding, which the ESP client may not handle.
     const responseString = JSON.stringify(response);
     res.setHeader('Content-Type', 'application/json');
-    res.send(responseString);
+    res.setHeader('Content-Length', Buffer.byteLength(responseString)); // Explicitly set Content-Length
+    res.send(responseString); 
 });
 
 // endpoint for ICE server requests
@@ -74,6 +75,10 @@ app.post('/ice', (_req, res) => {
             // You can add more STUN/TURN servers here if needed
         ],
     });
+    const iceResponseString = JSON.stringify(iceResponse);
+    res.setHeader('Content-Type', 'application/json');
+    res.setHeader('Content-Length', Buffer.byteLength(iceResponseString)); // Explicitly set Content-Length
+    res.send(iceResponseString);
 });
 
 // --- WebSocket Server Setup ---
