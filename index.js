@@ -61,6 +61,8 @@ app.post('/join/:roomId', (req, res) => {
     const responseString = JSON.stringify(response);
     res.setHeader('Content-Type', 'application/json');
     res.setHeader('Content-Length', Buffer.byteLength(responseString)); // Explicitly set Content-Length
+    console.log(`send responseString: ${responseString}`);
+    console.log(`Content-Length: ${Buffer.byteLength(responseString)}`);
     res.send(responseString); 
 });
 
@@ -78,6 +80,8 @@ app.post('/ice', (req, res) => {
     const iceResponseString = JSON.stringify(iceResponse);
     res.setHeader('Content-Type', 'application/json');
     res.setHeader('Content-Length', Buffer.byteLength(iceResponseString)); // Explicitly set Content-Length
+    console.log(`send responseString: ${responseString}`);
+    console.log(`Content-Length: ${Buffer.byteLength(responseString)}`);
     res.send(iceResponseString);
 });
 
